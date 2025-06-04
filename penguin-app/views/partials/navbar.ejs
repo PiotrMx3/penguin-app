@@ -1,0 +1,19 @@
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/penguins">Penguins</a></li>
+    </ul>
+    <div class="user-dropdown">
+        <input type="checkbox" id="menu-toggle" hidden>
+        <label for="menu-toggle" class="avatar-label">
+            <img src="https://raw.githubusercontent.com/similonap/json/refs/heads/master/penguins/images/<%= user.username %>.jpg" alt="Avatar" class="avatar">
+        </label>
+        <div class="user-menu">
+            <span class="username"><a href="/researchers/<%= user.username %>" class="profile-link"><%= user.username %></a></span>
+            <span class="fullname"><%= user.fullname %></span>
+            <form action="/logout" method="post" class="logout-form">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>

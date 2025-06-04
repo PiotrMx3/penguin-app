@@ -1,0 +1,33 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+
+<h1 class="page-title">Species: Royal Penguin</h1>
+<section class="detail-section full-width">
+    <p><strong>Habitat Type:</strong><%= species.habitatType %></p>
+    <p><strong>Temperature Tolerance:</strong> <%= species.temperatureTolerance.min %>°C to <%= species.temperatureTolerance.max %>°C</p>
+    <p><strong>Diet:</strong><%= species.diet.join(", ") %></p>
+    <p><strong>EndangermentStatus: <div class="status status-<%= species.endangermentStatus %>"><%= species.endangermentStatus %></div></strong></p>
+</section>
+
+<h2 class="section-title">Penguins of this Species</h2>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Description</th>
+            <th>Species</th>
+            <th>Island</th>
+            <th>Gender</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Year</th>
+            <th>Age</th>
+            <th>Assigned To</th>
+        </tr>
+    </thead>
+ <%- include("partials/tablepin") %>
+</table>
+
+<%- include("partials/footer") %>

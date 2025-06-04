@@ -1,0 +1,13 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+<%- include("partials/flash") %>
+
+<div class="pincode-container">
+    <form method="post" action="alexbio/update" class="update-form">
+        <input type="password" name="pincode" placeholder="Enter new pincode" required>
+        <input type="password" name="pincodeConfirm" placeholder="Confirm pincode" required>
+        <button type="submit" class="update-button">Update</button>
+    </form>
+</div>
+
+<%- include("partials/footer") %>

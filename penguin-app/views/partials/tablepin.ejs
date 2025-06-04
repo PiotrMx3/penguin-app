@@ -1,0 +1,29 @@
+  <tbody>
+
+
+<% allPenguins.forEach(p => { %>
+  <tr>
+    <td><img src="<%= p.image %>" width="100"></td>
+    <td><%= p.id %></td>
+    <td><%= p.nickname %></td>
+    <td><%= p.description %></td>
+    <td><a href="/species/<%= p.species_id %>"><%= p.species.name %></a></td>
+    <td><%= p.island %></td>
+    <td><%= p.gender %></td>
+    <td><%= p.weight %> kg</td>
+    <td><%= p.height %> cm</td>
+    <td><%= p.year %></td>
+    <td><%= calculatePenguinAge(p.year) %>y</td>
+    <td> <% if (p.assigned_to) { %>
+     <%= p.assigned_to %>
+    <% } else {%>
+
+      <form method="post" action="/penguins/<%= p.id %>/assign">
+           <button type="submit">Assign to me</button>
+           </form>
+  <%}%>
+
+  </td>
+  </tr>
+<% }) %>
+  </tbody>

@@ -1,0 +1,12 @@
+<script>
+    document.addEventListener('click', function(event) {
+      const toggle = document.getElementById('menu-toggle');
+      const dropdown = document.querySelector('.user-dropdown');
+  
+      if (!dropdown.contains(event.target)) {
+        toggle.checked = false;
+      }
+    });
+</script>
+</body>
+</html>

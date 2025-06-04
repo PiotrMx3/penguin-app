@@ -1,0 +1,30 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+<%- include("partials/flash") %>
+
+<main>
+    <section class="detail-section full-width">
+        <h1 class="page-title">Welcome to the Penguin Research Portal</h1>
+        <p>
+            Hello, <strong><%= user.fullname %>!</strong> You are logged in as a researcher. You can now explore the penguin species and their habitats, as well as manage your research data.
+        </p>
+        <p>
+            Dive into the world of penguin research! This portal provides a comprehensive view of various penguin species, their habitats, conservation status, and the dedicated researchers behind the scenes.
+        </p>
+        <p>
+            Explore our database, meet the team, and track ongoing research missions across the Southern Hemisphere.
+        </p>
+    </section>
+
+    <section class="detail-section full-width">
+        <h2>What You Can Do</h2>
+        <ul>
+            <li>🔍 Browse penguin species and view detailed information</li>
+            <li>🐧 Search for specific penguins by name or species</li>
+            <li>📊 Sort penguins by various attributes like name, species, or age</li>
+            <li>👨‍🔬 Meet our researchers and learn about their work</li>
+        </ul>
+    </section>
+</main>
+
+<%- include("partials/footer") %>

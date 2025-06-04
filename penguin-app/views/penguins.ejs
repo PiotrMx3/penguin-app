@@ -1,0 +1,80 @@
+<%- include("partials/header") %>
+<%- include("partials/navbar") %>
+<%- include("partials/flash") %>
+
+<form method="get" action="">
+  <label for="search">Search:</label>
+  <input type="text" id="q" name="q" value="<%= q %>">
+  <button type="submit">Search</button>
+  <label for="sortField">Sort by:</label>
+  <select id="sortField" name="sortField">
+
+    <option value="id" <%= field === 'id' ? 'selected' : ''  %>>Id</option>
+    <option value="nickname" <%= field === 'nickname' ? 'selected' : ''  %>>Nickname</option>
+    <option value="description" <%= field === 'description' ? 'selected' : ''  %> >Description</option>
+    <option value="species_id" <%= field === 'species_id' ? 'selected' : ''  %>>Species_id</option>
+    <option value="island" <%= field === 'island' ? 'selected' : ''  %> >Island</option>
+    <option value="gender" <%= field === 'gender' ? 'selected' : ''  %>>Gender</option>
+    <option value="weight" <%= field === 'weight' ? 'selected' : ''  %>>Weight</option>
+    <option value="height" <%= field === 'height' ? 'selected' : ''  %>>Height</option>
+    <option value="year" <%= field === 'year' ? 'selected' : ''  %>>Year</option>
+    <option value="image" <%= field === 'image' ? 'selected' : ''  %> >Image</option>
+    <option value="assigned_to" <%= field === 'assigned_to' ? 'selected' : ''  %>>Assigned_to</option>
+  </select>
+  <label for="sortDirection">Sort direction:</label>
+  <select id="sortDirection" name="sortDirection">
+    <option value="asc" <%= direction === 'asc' ? 'selected' : ''  %>>Ascending</option>
+    <option value="desc" <%= direction === 'desc' ? 'selected' : ''  %>>Descending</option>
+  </select>
+  <button type="submit">Sort</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ID</th>
+      <th>Nickname</th>
+      <th>Description</th>
+      <th>Species</th>
+      <th>Island</th>
+      <th>Gender</th>
+      <th>Weight</th>
+      <th>Height</th>
+      <th>Year</th>
+      <th>Age</th>
+      <th>Assigned To</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+<% allPenguins.forEach(p => { %>
+  <tr>
+    <td><img src="<%= p.image %>" width="100"></td>
+    <td><%= p.id %></td>
+    <td><%= p.nickname %></td>
+    <td><%= p.description %></td>
+    <td><a href="/species/<%= p.species_id %>"><%= p.species.name %></a></td>
+    <td><%= p.island %></td>
+    <td><%= p.gender %></td>
+    <td><%= p.weight %> kg</td>
+    <td><%= p.height %> cm</td>
+    <td><%= p.year %></td>
+    <td><%= calculatePenguinAge(p.year) %>y</td>
+    <td> <% if (p.assigned_to) { %>
+     <%= p.assigned_to %>
+    <% } else {%>
+
+      <form method="post" action="/penguins/<%= p.id %>/assign">
+           <button type="submit">Assign to me</button>
+           </form>
+  <%}%>
+
+  </td>
+  </tr>
+<% }) %>
+  </tbody>
+</table>
+
+<%- include("partials/footer") %>
