@@ -26,20 +26,18 @@ export function penguinRouter() {
 
     router.post("/:id/assign", async(req, res) => {
 
-        
         const id = parseInt(req.params.id);
         const user = req.session.user?.username;
 
         try {
             if(!user) throw new Error("error user not find");
-            
              await assignPenguinToResearcher(id, user);
-    
-    
+             
             res.redirect("/penguins");
             
         } catch (error) {
-            
+            if (error instanceof Error)
+            res.status(404).send(error.message);    
         }
     });
 

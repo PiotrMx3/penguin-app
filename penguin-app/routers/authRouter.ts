@@ -5,7 +5,6 @@ export function authRouter() {
     const router = Router();
 
     router.get("/login", async(req, res) => {
-        req.session.message = {type:"success", message: `See you later !` };  
         const researchers = await getAllResearchers();
         res.render("login", {
             researchers: researchers
@@ -14,7 +13,6 @@ export function authRouter() {
 
     router.post("/login", async(req, res) => {
         const {username, pincode} = req.body;
-        console.log(username);
 
         try {
          const user = await login(username,pincode);
@@ -35,11 +33,12 @@ export function authRouter() {
 
     router.post("/logout", (req, res) => {  
         
-        req.session.destroy(() => {
+
+        req.session.message = {type:"success", message: `See you later !` };  
+        delete req.session.user;
         res.redirect("/login");
     });
     
-});
 
 
     return router;
