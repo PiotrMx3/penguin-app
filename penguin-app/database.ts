@@ -2,7 +2,7 @@ import { Collection, MongoClient, SortDirection } from "mongodb";
 import dotenv from "dotenv";
 import { Penguin, Researcher, Species } from "./types";
 import bcrypt from "bcrypt"
-import { log } from "console";
+
 
 
 dotenv.config();
@@ -45,16 +45,23 @@ export async function getSpeciesById(id: string): Promise<Species | null> {
     return result;
 }
 
-export async function updateResearcher(username: string, newPincode: string): Promise<void> {
+export async function updateResearcher(userName: string, newPincode: string): Promise<void> {
     
+const newhashPin = await bcrypt.hash(newPincode, SALT_ROUNDS);
+
+    const user = await researchersCollection.findOne<Researcher>({username: userName });
+    if(!user) throw new Error("User not found");
+    await researchersCollection.updateOne({ username: userName} , {$set: {pincode : newhashPin}});
+
+
 }
 
 export async function assignPenguinToResearcher(penguinId: number, researcherString: string): Promise<void> {  
 
     const penguin = await penguinsCollection.findOne<Penguin>({id: penguinId });
-    
+
     if(!penguin) throw new Error("Penguin not found");    
-    const result = await penguinsCollection.updateOne({ id: penguinId} , {$set: {assigned_to : researcherString}}, {upsert: true})
+    await penguinsCollection.updateOne({ id: penguinId} , {$set: {assigned_to : researcherString}}, {upsert: true})
 
 };
 

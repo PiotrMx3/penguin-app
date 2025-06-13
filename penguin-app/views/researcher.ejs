@@ -3,7 +3,7 @@
 <%- include("partials/flash") %>
 
 <div class="pincode-container">
-    <form method="post" action="alexbio/update" class="update-form">
+    <form method="post" action="<%= user.username %>/update" class="update-form">
         <input type="password" name="pincode" placeholder="Enter new pincode" required>
         <input type="password" name="pincodeConfirm" placeholder="Confirm pincode" required>
         <button type="submit" class="update-button">Update</button>
